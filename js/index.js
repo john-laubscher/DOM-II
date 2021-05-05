@@ -9,11 +9,12 @@ mouseOverColor.addEventListener("mouseout", function(event){
     event.target.style.backgroundColor = "white";
 });
 
-//Keydown with text size change              //
-const keyDown = document.querySelector("h4")
-
+//Keydown with text size change              //works
+const keyDown = document.querySelector("nav:nth-child(2)");
 keyDown.addEventListener("keydown", function(event){
-    event.target.style.fontSize = "350%";
+    event.target.style.fontSize = "350% !important";
+    event.target.style.backgroundColor = "orange";
+    console.log(event.target);
 });
 
 //onclick to text enlarge                          //works
@@ -24,33 +25,42 @@ onClick.addEventListener("click", function(event) {
     bigFont.style.fontSize = "400%";
 })
 
-//doubleclick to reduce                      //works
+//doubleclick to enlarge                      //works
 const dblClick = document.querySelector("header h2")
 
 dblClick.addEventListener("dblclick", function(event){  
     event.target.style.fontSize = "400%";
 })
 
-//onload welcome to the fun bus gets big
+//onload welcome to the fun bus makes grey        
 const welcomeMsg = document.querySelector(".text-content h2");
+console.log(welcomeMsg);
+const bodyTag = document.querySelector("body")
 
-welcomeMsg.addEventListener("load", onloadFunction);
 
-function onloadFunction() {
-    welcomeMsg.target.style.fontSize = "50px";
+// bodyTag.addEventListener("onload", onLoadFunction)
+function onLoadFunction(event) {
+    console.log(event.target);
+    welcomeMsg.style.backgroundColor = "grey";
+    console.log(welcomeMsg)
 }
 
-//text select colorchange
+window.addEventListener('DOMContentLoaded', onLoadFunction, false); 
+
+
+
+//text select colorchange                     //
 const textSelect = document.querySelector(".destination p")
 
 function colorSelection(event) {
 const selection = event.target.value.substring(event.target.selectionStart, event.target.selectionEnd);
+console.log(selection);
  selection.style.color = "orange"
 }
-textSelect.addEventListener('select', colorSelection)
+textSelect.addEventListener('selectionchange', colorSelection)
 
-//focus event used to turn nav Home red
-const focusEvent = document.querySelector("nav a")  ///works
+//focus event used to turn nav Home red           //works
+const focusEvent = document.querySelector("nav a")  
 
 focusEvent.addEventListener("focus", focusFunction);
 
@@ -58,7 +68,7 @@ function focusFunction() {
     focusEvent.style.backgroundColor = "red";
 }
 
-// scroll event to make bigger           //
+// scroll event to make bigger                    //
 document.querySelector(".text-content").addEventListener("wheel", scrollFunction);
 
 function scrollFunction() {
